@@ -17,7 +17,7 @@ function mulaiKuis() {
     .then(response => response.text())
     .then(data => {
       soalList = parseSoal(data);
-      waktu = soalList.waktu || 60;
+      waktu = soalList.waktu || 10;
 
       document.getElementById("login").style.display = "none";
       document.getElementById("kuis").style.display = "block";
