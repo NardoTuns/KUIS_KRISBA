@@ -1,21 +1,15 @@
-SOAL Apa ibu kota Indonesia?
-A. Bandung
-B. Surabaya
-C. Jakarta
-D. Medan
-Kunci : C
-Gambar : peta_indonesia.jpg
+1. Ibukota Indonesia adalah...
+a. Kuala Lumpur
+b. Bangkok
+c. Jakarta
+d. Singapura
+Kunci: c
+Gambar: indonesia-map.jpg
 
-SOAL Planet ke-3 dari matahari adalah?
-A. Mars
-B. Bumi
-C. Venus
-D. Jupiter
-Kunci : B
-
-SOAL Hewan pemakan daging disebut?
-A. Herbivora
-B. Karnivora
-C. Omnivora
-D. Predator
-Kunci : B
+2. 2 + 2 x 2 = ...
+a. 6
+b. 8
+c. 4
+d. 10
+Kunci: a
+Gambar: math.jpg
