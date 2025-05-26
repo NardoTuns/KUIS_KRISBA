@@ -1,5 +1,3 @@
-Waktu : 10
-
 SOAL Apa ibu kota Indonesia?
 A. Bandung
 B. Surabaya
@@ -13,4 +11,11 @@ A. Mars
 B. Bumi
 C. Venus
 D. Jupiter
+Kunci : B
+
+SOAL Hewan pemakan daging disebut?
+A. Herbivora
+B. Karnivora
+C. Omnivora
+D. Predator
 Kunci : B
