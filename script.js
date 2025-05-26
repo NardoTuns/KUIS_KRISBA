@@ -1,6 +1,5 @@
 let soalList = [];
-let waktu = 0;
-let currentIndex = 0;
+let waktu = 60;
 let timerInterval;
 
 function mulaiKuis() {
@@ -17,13 +16,14 @@ function mulaiKuis() {
     .then(response => response.text())
     .then(data => {
       soalList = parseSoal(data);
-      waktu = soalList.waktu || 10;
+      waktu = soalList.waktu || 60;
 
       document.getElementById("login").style.display = "none";
       document.getElementById("kuis").style.display = "block";
       document.getElementById("waktu").textContent = waktu;
 
-      tampilkanSoal(currentIndex);
+      tampilkanSemuaSoal();
+
       timerInterval = setInterval(() => {
         waktu--;
         document.getElementById("waktu").textContent = waktu;
@@ -36,43 +36,51 @@ function parseSoal(data) {
   const lines = data.split('\n');
   const soalArray = [];
   let soalObj = {};
+  let waktuSet = 60;
+
   lines.forEach(line => {
-    if (line.startsWith("SOAL")) {
+    if (line.startsWith("Waktu")) {
+      waktuSet = parseInt(line.split(":")[1].trim());
+    } else if (line.startsWith("SOAL")) {
       if (Object.keys(soalObj).length > 0) soalArray.push(soalObj);
-      soalObj = { soal: line, pilihan: {} };
+      soalObj = { soal: line.substring(5).trim(), pilihan: {} };
     } else if (/^[A-D]\./.test(line)) {
       const opsi = line[0];
-      soalObj.pilihan[opsi] = line.slice(2);
+      soalObj.pilihan[opsi] = line.substring(3).trim();
     } else if (line.startsWith("Kunci")) {
       soalObj.kunci = line.split(':')[1].trim();
     } else if (line.startsWith("Gambar")) {
       soalObj.gambar = line.split(':')[1].trim();
-    } else if (line.startsWith("Waktu")) {
-      soalArray.waktu = parseInt(line.split(':')[1].trim());
     }
   });
-  soalArray.push(soalObj); // push terakhir
+  if (Object.keys(soalObj).length > 0) soalArray.push(soalObj);
+  soalArray.waktu = waktuSet;
   return soalArray;
 }
 
-function tampilkanSoal(index) {
-  const soalDiv = document.getElementById("soal-container");
-  const s = soalList[index];
-  if (!s) return;
-
-  let html = `<h3>${s.soal}</h3>`;
-  for (let opsi in s.pilihan) {
-    html += `<label><input type="radio" name="soal${index}" value="${opsi}" /> ${opsi}. ${s.pilihan[opsi]}</label><br>`;
-  }
-  if (s.gambar) {
-    html += `<img src="Gambar/${s.gambar}" alt="Gambar soal" />`;
-  }
-
-  soalDiv.innerHTML = html;
+function tampilkanSemuaSoal() {
+  const form = document.getElementById("formKuis");
+  soalList.forEach((soal, index) => {
+    const div = document.createElement("div");
+    div.innerHTML = `<h3>${index + 1}. ${soal.soal}</h3>`;
+    for (let opsi in soal.pilihan) {
+      div.innerHTML += `
+        <label>
+          <input type="radio" name="soal${index}" value="${opsi}">
+          ${opsi}. ${soal.pilihan[opsi]}
+        </label><br>
+      `;
+    }
+    if (soal.gambar) {
+      div.innerHTML += `<img src="Gambar/${soal.gambar}" alt="Gambar Soal">`;
+    }
+    div.innerHTML += `<hr>`;
+    form.appendChild(div);
+  });
 }
 
 function selesaiKuis() {
   clearInterval(timerInterval);
-  alert("Waktu habis atau selesai. Terima kasih!");
-  // Di sini bisa disimpan hasil atau ditampilkan nilai
+  alert("Kuis selesai atau waktu habis. Terima kasih!");
+  // Bisa ditambahkan fitur nilai, rekap, dll
 }
