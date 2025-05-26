@@ -2,15 +2,19 @@ body {
   font-family: sans-serif;
   padding: 20px;
 }
-input {
+input, button {
   display: block;
   margin: 10px 0;
+  padding: 5px;
 }
-#soal-container {
+#formKuis {
   margin-top: 20px;
 }
 img {
   max-width: 300px;
   display: block;
-  margin-top: 10px;
+  margin: 10px 0;
+}
+h3 {
+  margin-bottom: 5px;
 }
