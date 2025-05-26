@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kuis Online</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="login">
+    <h2>Login</h2>
+    <input type="text" id="nama" placeholder="Nama" required />
+    <input type="text" id="kelas" placeholder="Kelas" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <button onclick="mulaiKuis()">Mulai Kuis</button>
+  </div>
+
+  <div id="kuis" style="display:none;">
+    <div id="timer">Sisa Waktu: <span id="waktu">--</span> detik</div>
+    <div id="soal-container"></div>
+    <button onclick="selesaiKuis()">Selesai</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
